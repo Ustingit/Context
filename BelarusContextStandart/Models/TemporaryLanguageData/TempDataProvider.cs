@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using BelarusContextStandart.Models.LanguageModels;
 using BelarusContextStandart.Models.LanguageModels.Languages;
+using BelarusContextStandart.Parsers;
 using Enum = BelarusContextStandart.Models.LanguageModels.Languages.Enum;
 
 namespace BelarusContextStandart.Models.TemporaryLanguageData
@@ -37,6 +39,34 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
                 default:
                     throw new InvalidOperationException("unknown language");
             }
+        }
+
+        public static SearchResult GetTranslation(TranslateModel data)
+        {
+            var tempSearch = "мне";
+            var result = new List<string>();
+
+            if (true) // !string.IsNullOrEmpty(data?.Data)
+            {
+                foreach (var file in FileParser.GetFiles())
+                {
+                    foreach (var row in File.ReadAllLines(file.FullName))
+                    {
+                        if (row.Contains(tempSearch))
+                        {
+                            var startIndex = row.IndexOf(tempSearch, StringComparison.CurrentCultureIgnoreCase);
+
+                            var from = (startIndex - 15) < 0 ? 0 : startIndex - 15;
+                            var to = (startIndex + 15) < (row.Length - 1) ? startIndex + 15 : row.Length - 1;
+                            var length = (from + 15) < (row.Length - 1) ? 15 : row.Length - 1;
+
+                            result.Add(row.Substring(from, length));
+                        }
+                    }
+                }
+            }
+
+            return SearchResult.GetEmpty();
         }
     }
 }

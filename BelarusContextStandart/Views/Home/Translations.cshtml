@@ -1,0 +1,13 @@
+﻿@model BelarusContextStandart.Models.LanguageModels.SearchResult
+
+<div class="row">
+    <div class="col-md-8">
+        @if (!Model.IsEmpty)
+        {
+            foreach (var translation in Model.Data)
+            {
+                <p>@translation</p>
+            }
+        }
+    </div>
+</div>

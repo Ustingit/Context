@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using BelarusContextStandart.Models.LanguageModels;
@@ -9,11 +10,18 @@ namespace BelarusContextStandart.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        [HttpGet]
+        public async Task<ActionResult> Index()
         {
-            ViewBag.TranslateData = TranslateModel.Default;
+            return View(TranslateModel.Default);
+        }
 
-            return View();
+        [HttpGet]
+        public ActionResult GetTranslation(TranslateModel data)
+        {
+            var translatedResult = Models.TemporaryLanguageData.TempDataProvider.GetTranslation(data);
+
+            return PartialView("Translations", translatedResult);
         }
 
         public ActionResult About()

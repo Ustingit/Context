@@ -65,7 +65,6 @@ C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\bin\Mic
 C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\bin\Microsoft.AI.Web.xml
-C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\obj\Debug\BelarusContextStandart.csprojResolveAssemblyReference.cache
 C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\obj\Debug\BelarusContextStandart.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\obj\Debug\BelarusContextStandart.dll
 C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\obj\Debug\BelarusContextStandart.pdb

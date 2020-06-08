@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace BelarusContextStandart.Models.LanguageModels
 {
@@ -22,5 +19,7 @@ namespace BelarusContextStandart.Models.LanguageModels
         public Guid ToLang { get; set; }
 
         public string Data { get; set; }
+
+        public bool Reverse { get; set; }
     }
 }

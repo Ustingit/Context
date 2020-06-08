@@ -1,9 +1,7 @@
-﻿@using BelarusContextStandart.Models.LanguageModels
+﻿@model BelarusContextStandart.Models.LanguageModels.TranslateModel
+
 @{
     ViewBag.Title = "Контекстные переводы беларуского языка";
-
-    var model = (TranslateModel) ViewBag.TranslateData;
-    var hasValue = model != null;
 }
 
 <div class="jumbotron">
@@ -13,38 +11,40 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <h2>Getting started</h2>
-        @if (hasValue)
+        @if (Model != null)
         {
             <div>
                 <form method="post" action="">
-                    <input type="hidden" value="model" name="BookId" />
-                    <table>
-                        <tr><td><p>Введите текст для перевода </p></td>
-                            <td><input type="text" name="Person" /> </td></tr>
-                        <tr><td><p>Введите адрес :</p></td><td> 
-                            <input type="text" name="Address" /> </td></tr>
-                        <tr><td><input type="submit" value="Перевести" /> </td><td></td></tr>
-                    </table>
+                    @Html.EditorFor(x => x.Data)
+                    @Html.EditorFor(x => x.FromLang)
+                    @Html.EditorFor(x => x.ToLang)
+                    <input type="submit" value="Найти" />
                 </form>
+                
+                @using (Html.BeginForm("GetTranslation", "Home", FormMethod.Get))
+                {
+                    <fieldset>
+                        <p>
+                            @Html.EditorFor(m => m.Data)
+                        </p>
+                        <p>
+                            @Html.EditorFor(m => m.FromLang)
+                        </p>
+                        <p>
+                            @Html.EditorFor(m => m.Reverse)
+                        </p>
+                        <p>
+                            @Html.EditorFor(m => m.ToLang)
+                        </p>
+                        <p><input type="submit" value="Найти" /></p>
+                    </fieldset>
+                }
+            </div>
+            <div>
+
             </div>
         }
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
