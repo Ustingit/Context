@@ -68,3 +68,4 @@ C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\bin\Mic
 C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\obj\Debug\BelarusContextStandart.csproj.CoreCompileInputs.cache
 C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\obj\Debug\BelarusContextStandart.dll
 C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\obj\Debug\BelarusContextStandart.pdb
+C:\Users\User\source\repos\BelarusContextStandart\BelarusContextStandart\obj\Debug\BelarusContextStandart.csprojResolveAssemblyReference.cache

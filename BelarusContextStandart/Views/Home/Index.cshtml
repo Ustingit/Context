@@ -16,35 +16,86 @@
         @if (Model != null)
         {
             <div>
-                <form method="post" action="">
-                    @Html.EditorFor(x => x.Data)
-                    @Html.EditorFor(x => x.FromLang)
-                    @Html.EditorFor(x => x.ToLang)
-                    <input type="submit" value="Найти" />
-                </form>
-                
-                @using (Html.BeginForm("GetTranslation", "Home", FormMethod.Get))
+                @using (Ajax.BeginForm("Translations", "Home", new AjaxOptions { UpdateTargetId = "results" }))
                 {
-                    <fieldset>
                         <p>
-                            @Html.EditorFor(m => m.Data)
+                            <input class="text-box single-line" id="Data" name="data" type="text" value="">
                         </p>
                         <p>
-                            @Html.EditorFor(m => m.FromLang)
+                            <input class="text-box single-line" data-val="true" data-val-required="Требуется поле FromLang." id="FromLang" name="fromLang" type="text" value="4e5b4496-6960-407b-ad4a-5dc7b5392fe3">
                         </p>
                         <p>
-                            @Html.EditorFor(m => m.Reverse)
+                            <input class="check-box" data-val="true" data-val-required="Требуется поле Reverse." id="Reverse" name="reverse" type="checkbox" value="true">
+                            <input name="reverse" type="hidden" value="false">
                         </p>
                         <p>
-                            @Html.EditorFor(m => m.ToLang)
+                            <input class="text-box single-line" data-val="true" data-val-required="Требуется поле ToLang." id="ToLang" name="toLang" type="text" value="d4d0f4ac-ecec-4446-bdd3-bbc5a8d489f0">
                         </p>
-                        <p><input type="submit" value="Найти" /></p>
-                    </fieldset>
+                        <p><input type="submit" value="Поиск"></p>
                 }
+                <div id="results"></div>
+                
+                <p>-----------</p>
+                @Ajax.ActionLink("Load More Posts", "GetTranslation", "Home", new { data = Model }, new AjaxOptions()
+                {
+                    HttpMethod = "GET",
+                    AllowCache = false,
+                    InsertionMode = InsertionMode.InsertAfter,
+                    UpdateTargetId = "posts-wrapper"
+                })
             </div>
-            <div>
-
+            <div id="translations">
             </div>
         }
     </div>
 </div>
+
+<!--
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input[type=submit]").live("click", function () {
+            var f = $("input[type=submit]").parents("form");
+            var action = f.attr("action");
+            var serializedForm = f.serialize();
+            $.ajax({
+                type: 'GET',
+                url: action,
+                data: serializedForm,
+                success: function (data, textStatus, request) {
+                    if (!data == "") {
+                        console.log("DATA HERE!");
+                        $("#translations").html(data);
+                    }
+                    else {
+                        console.log("NO DATA!");
+                    }
+                }
+            });
+            return false;
+        });
+    });
+
+    $(document).ready(function () {
+        $('input[name="btnLink"]').live("click", function () {
+            var f = $("input[type=submit]").parents("form");
+            
+            var action = f.attr("action");
+            var serializedForm = f.serialize();
+            $.ajax({
+                type: 'GET',
+                url: action,
+                data: serializedForm,
+                success: function (data, textStatus, request) {
+                    if (!data == "") {
+                        console.log("DATA HERE!!!!");
+                        $("#translations").html(data);
+                    }
+                    else {
+                        console.log("NO DATA!!!!");
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>-->

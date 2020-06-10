@@ -64,6 +64,8 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
                         }
                     }
                 }
+
+                return new SearchResult(result.ToArray());
             }
 
             return SearchResult.GetEmpty();

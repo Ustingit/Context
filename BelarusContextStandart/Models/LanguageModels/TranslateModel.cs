@@ -7,11 +7,12 @@ namespace BelarusContextStandart.Models.LanguageModels
         public static TranslateModel Default = new TranslateModel(LanguageConfiguration.DefaultFromLang.Id, 
             LanguageConfiguration.DefaultToLang.Id, string.Empty);
 
-        public TranslateModel(Guid from, Guid to, string data)
+        public TranslateModel(Guid from, Guid to, string data, bool reverse = false)
         {
             FromLang = from;
             ToLang = to;
             Data = data;
+            Reverse = reverse;
         }
 
         public Guid FromLang { get; set; }

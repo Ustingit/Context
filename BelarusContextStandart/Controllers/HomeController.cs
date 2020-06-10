@@ -16,12 +16,13 @@ namespace BelarusContextStandart.Controllers
             return View(TranslateModel.Default);
         }
 
-        [HttpGet]
-        public ActionResult GetTranslation(TranslateModel data)
+        [HttpPost]
+        public ActionResult Translations(string data, Guid fromLang, bool reverse, Guid toLang)
         {
-            var translatedResult = Models.TemporaryLanguageData.TempDataProvider.GetTranslation(data);
+            var formData = new TranslateModel(fromLang, toLang, data, reverse);
+            var translatedResult = Models.TemporaryLanguageData.TempDataProvider.GetTranslation(formData);
 
-            return PartialView("Translations", translatedResult);
+            return PartialView(translatedResult.Data);
         }
 
         public ActionResult About()
