@@ -43,22 +43,20 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
 
         public static SearchResult GetTranslation(TranslateModel data)
         {
-            var tempSearch = "мне";
             var result = new List<string>();
 
-            if (true) // !string.IsNullOrEmpty(data?.Data)
+            if (!string.IsNullOrEmpty(data?.Data))
             {
                 foreach (var file in FileParser.GetFiles())
                 {
                     foreach (var row in File.ReadAllLines(file.FullName))
                     {
-                        if (row.Contains(tempSearch))
+                        if (row.Contains(data.Data))
                         {
-                            var startIndex = row.IndexOf(tempSearch, StringComparison.CurrentCultureIgnoreCase);
+                            var startIndex = row.IndexOf(data.Data, StringComparison.CurrentCultureIgnoreCase);
 
-                            var from = (startIndex - 15) < 0 ? 0 : startIndex - 15;
-                            var to = (startIndex + 15) < (row.Length - 1) ? startIndex + 15 : row.Length - 1;
-                            var length = (from + 15) < (row.Length - 1) ? 15 : row.Length - 1;
+                            var from = (startIndex - 25) < 0 ? 0 : startIndex - 25;
+                            var length = (from + 25) < (row.Length - 1) ? 25 : row.Length - 1;
 
                             result.Add(row.Substring(from, length));
                         }

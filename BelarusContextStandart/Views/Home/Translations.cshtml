@@ -2,14 +2,9 @@
 
 <div id="searchresults">
     <ul>
-        @{
-            var i = 1;
-        }
-
         @foreach (var translation in Model)
         {
-            <li>@i) @translation</li>
-            i++;
+            <li>@translation</li>
         }
     </ul>
 </div>
