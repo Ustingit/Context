@@ -22,7 +22,7 @@ namespace BelarusContextStandart.Controllers
         {
             var formData = new TranslateModel(fromLang, toLang, data, reverse);
             var translatedResult = Models.TemporaryLanguageData.TempDataProvider.GetTranslation(formData);
-
+            
             return PartialView(translatedResult.Data);
         }
 
