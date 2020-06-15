@@ -16,6 +16,7 @@ namespace BelarusContextStandart.Controllers
             return View(TranslateModel.Default);
         }
 
+        //ajax partial - https://metanit.com/sharp/mvc5/10.2.php , install "unobtrusive-ajax" from NuGet
         [HttpPost]
         public ActionResult Translations(string data, Guid fromLang, bool reverse, Guid toLang)
         {
