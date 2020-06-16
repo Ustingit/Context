@@ -1,4 +1,6 @@
-﻿namespace BelarusContextStandart.Models.LanguageModels.Languages
+﻿using System.ComponentModel;
+
+namespace BelarusContextStandart.Models.LanguageModels.Languages
 {
     public enum Enum
     {
@@ -7,7 +9,8 @@
         English = 3,
         Ukrainian = 4,
         Polish = 5,
-
+        
+        [Description(Helpers.Web.EnumDescriptionDropDownList.IgnoreAttributeName)]
         UnknownLanguage = 6
     }
 }

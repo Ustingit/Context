@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
@@ -11,6 +12,8 @@ namespace BelarusContextStandart.Helpers.Web
 {
     public static class EnumDescriptionDropDownList
     {
+        public const string IgnoreAttributeName = "IGNORE";
+
         private static Type GetNonNullableModelType(ModelMetadata modelMetadata)
         {
             Type realModelType = modelMetadata.ModelType;
@@ -48,13 +51,13 @@ namespace BelarusContextStandart.Helpers.Web
             Type enumType = GetNonNullableModelType(metadata);
             IEnumerable<TEnum> values = Enum.GetValues(enumType).Cast<TEnum>();
 
-            IEnumerable<SelectListItem> items = from value in values
+            IEnumerable<SelectListItem> items = (from value in values
                                                 select new SelectListItem
                                                 {
                                                     Text = GetEnumDescription(value),
                                                     Value = value.ToString(),
                                                     Selected = value.Equals(metadata.Model)
-                                                };
+                                                }).Where(x => x.Text != IgnoreAttributeName);
 
             // If the enum is nullable, add an 'empty' item to the collection
             if (metadata.IsNullableValueType)
