@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Enum = BelarusContextStandart.Models.LanguageModels.Languages.Enum;
 
 namespace BelarusContextStandart.Models.LanguageModels
 {
     public class TranslateModel
     {
-        public static TranslateModel Default = new TranslateModel(LanguageConfiguration.DefaultFromLang.Id, 
-            LanguageConfiguration.DefaultToLang.Id, string.Empty);
+        public static TranslateModel Default = new TranslateModel(LanguageConfiguration.DefaultFromLang, 
+            LanguageConfiguration.DefaultToLang, string.Empty);
 
-        public TranslateModel(Guid from, Guid to, string data, bool reverse = false)
+        public TranslateModel(Enum from, Enum to, string data, bool reverse = false)
         {
             FromLang = from;
             ToLang = to;
@@ -15,9 +15,9 @@ namespace BelarusContextStandart.Models.LanguageModels
             Reverse = reverse;
         }
 
-        public Guid FromLang { get; set; }
+        public Enum FromLang { get; set; }
 
-        public Guid ToLang { get; set; }
+        public Enum ToLang { get; set; }
 
         public string Data { get; set; }
 

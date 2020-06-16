@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BelarusContextStandart.Models.LanguageModels.Languages;
 using Enum = BelarusContextStandart.Models.LanguageModels.Languages.Enum;
 
 namespace BelarusContextStandart.Models.LanguageModels
@@ -19,10 +15,13 @@ namespace BelarusContextStandart.Models.LanguageModels
         {
             Id = id;
             Name = lang.ToString();
+            Lang = lang;
         }
 
         public Guid Id { get; set; }
 
         public string Name { get; set; }
+
+        public Enum Lang { get; set; }
     }
 }

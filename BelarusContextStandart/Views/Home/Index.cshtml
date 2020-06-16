@@ -1,4 +1,5 @@
-﻿@model BelarusContextStandart.Models.LanguageModels.TranslateModel
+﻿@using BelarusContextStandart.Helpers.Web
+@model BelarusContextStandart.Models.LanguageModels.TranslateModel
 
 @{
     ViewBag.Title = "Контекстные переводы беларуского языка";
@@ -11,20 +12,14 @@
         <div>
             @using (Ajax.BeginForm("Translations", "Home", new AjaxOptions { UpdateTargetId = "results" }))
             {
-                <p>
-                    <input class="text-box single-line" id="Data" name="data" type="text" value="">
-                </p>
-                <p>
-                    <input class="text-box single-line" data-val="true" data-val-required="Требуется поле FromLang." id="FromLang" name="fromLang" type="text" value="4e5b4496-6960-407b-ad4a-5dc7b5392fe3">
-                </p>
-                <p>
+                <input class="text-box single-line" id="Data" name="data" type="text" value="">
+                @Html.EnumDescriptionDropDownListFor(model => model.FromLang)
+                <span>
                     <input class="check-box" data-val="true" data-val-required="Требуется поле Reverse." id="Reverse" name="reverse" type="checkbox" value="true">
                     <input name="reverse" type="hidden" value="false">
-                </p>
-                <p>
-                    <input class="text-box single-line" data-val="true" data-val-required="Требуется поле ToLang." id="ToLang" name="toLang" type="text" value="d4d0f4ac-ecec-4446-bdd3-bbc5a8d489f0">
-                </p>
-                <p><input type="submit" value="Поиск"></p>
+                </span>
+                @Html.EnumDescriptionDropDownListFor(model => model.ToLang)
+                <span><input type="submit" value="Поиск"></span>
             }
         </div>
 

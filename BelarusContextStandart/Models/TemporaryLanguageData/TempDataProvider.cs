@@ -25,7 +25,7 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
             { engLangId, new Language(engLangId, Enum.English) },
             { unknownLangId, new Language(unknownLangId, Enum.UnknownLanguage) }
         };
-
+        
         public static Language Get(Enum lang)
         {
             switch (lang)
