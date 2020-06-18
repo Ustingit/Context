@@ -4,28 +4,29 @@
 @{
     ViewBag.Title = "Контекстные переводы беларуского языка";
     var isValid = Model != null;
+    var isEmpty = isValid && string.IsNullOrEmpty(Model.Data);
+
+    var index = 0;
 }
 
 <div class="jumbotron">
     @if (isValid)
     {
-        <div>
-            @using (Ajax.BeginForm("Translations", "Home", new AjaxOptions { UpdateTargetId = "results" }))
+        <!--<div>
+            using (Ajax.BeginForm("Translations", "Home", new AjaxOptions { UpdateTargetId = "results" }))
             {
                 <input class="text-box single-line" id="Data" name="data" type="text" value="">
                 <!-- Html.EnumDescriptionDropDownListFor(model => model.FromLang)-->
-                <span>
+                <!--<span>-->
                     <!--<input class="check-box" data-val="true" data-val-required="Требуется поле Reverse." id="Reverse" name="reverse" type="checkbox" value="true">-->
-                    <input name="reverse" type="hidden" value="false">
-                </span>
+                           <!--<input name="reverse" type="hidden" value="false">-->
+                    <!--</span>-->
                 <!--Html.EnumDescriptionDropDownListFor(model => model.ToLang)-->
-                <span><input type="submit" value="Поиск"></span>
-                @Html.HiddenFor(x => x.FromLang)
-                @Html.HiddenFor(x => x.ToLang)
-            }
-        </div>
-
-
+        <!-- <span><input type="submit" value="Поиск"></span>-->
+                <!--Html.HiddenFor(x => x.FromLang)
+                <!--Html.HiddenFor(x => x.ToLang)
+                </div>-->
+        
         <div class="wrapper wrapper--w1226">
             <div class="card card-5">
                 <div class="card-body">
@@ -55,18 +56,19 @@
 
 <div class="row">
     <div class="col-md-8">
+        <div>
+            <div id="results"></div>
+            <div class="w-100"></div>
+        </div>
         @if (isValid)
         {
             <div>
-                <div id="results"></div>
-                
-                <p>-----------</p>
-                @Ajax.ActionLink("Load More Posts", "Translations", "Home", new { data = Model }, new AjaxOptions()
+                @Ajax.ActionLink("Загрузить больше результатов..", "Translations", "Home", new {data = Model.Data, fromLang = Model.FromLang, reverse = Model.Reverse, toLang = Model.ToLang}, new AjaxOptions()
                 {
-                    HttpMethod = "GET",
+                    HttpMethod = "POST",
                     AllowCache = false,
                     InsertionMode = InsertionMode.InsertAfter,
-                    UpdateTargetId = "posts-wrapper"
+                    UpdateTargetId = "results"
                 })
             </div>
             <div id="translations">
