@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using BelarusContextStandart.Models.LanguageModels;
 using BelarusContextStandart.Models.LanguageModels.Languages;
@@ -12,6 +13,8 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
 {
     public class TempDataProvider
     {
+        private const int RowLength = 100;
+
         private static readonly Guid belLangId = Guid.Parse("D4D0F4AC-ECEC-4446-BDD3-BBC5A8D489F0");
         private static readonly Guid rusLangId = Guid.Parse("4E5B4496-6960-407B-AD4A-5DC7B5392FE3");
         private static readonly Guid engLangId = Guid.Parse("FC118C73-0E92-4176-B341-4601F89156F9");
@@ -56,9 +59,123 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
                             var startIndex = row.IndexOf(data.Data, StringComparison.CurrentCultureIgnoreCase);
 
                             var from = (startIndex - 25) < 0 ? 0 : startIndex - 25;
-                            var length = (from + 25) < (row.Length - 1) ? 25 : row.Length - 1;
+                            var length = (from + RowLength) < (row.Length - 1) 
+                                ? RowLength 
+                                : row.Length - 1;
 
-                            result.Add(row.Substring(from, length));
+
+
+
+                            var separators = new [] { '!', '.', '?' };
+                            var sentences = row.Split(separators);
+                            var sentencesAsList = sentences.ToList();
+                            var sentenceWitItem = sentencesAsList.FirstOrDefault(x => x.Contains(data.Data));
+                            var indexOfSentence = sentencesAsList.IndexOf(sentenceWitItem);
+                            
+                            var sb4 = new StringBuilder();
+                            if (indexOfSentence <= sentences.Length / 2)
+                            {
+                                for (var i = indexOfSentence; i <= sentences.Length - 1; i++)
+                                {
+                                    if (!string.IsNullOrEmpty(sentences[i]) && sb4.Length <= RowLength)
+                                    {
+                                        sb4.Append(sentences[i]);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                var reversedList = new List<string>();
+
+                                for (var i = indexOfSentence; i >= 0; i--)
+                                {
+                                    if (reversedList.Sum(x => x.Length) <= RowLength)
+                                    {
+                                        reversedList.Add(sentences[i]);
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+
+                                reversedList.Reverse();
+                                foreach (var x in reversedList)
+                                {
+                                    sb4.Append(x);
+                                }
+                            }
+                            result.Add(sb4.ToString());
+
+                            /* 
+                            if (sentenceWitItem?.Length < RowLength)
+                            {
+                                var sb = new StringBuilder();
+                                var isReversed = false;
+                                List<string> reversedResult = null;
+                                
+                                while (sb.Length < RowLength)
+                                {
+                                    var isLessThanHalf = indexOfSentence <= sentences.Length / 2;
+                                    if (!isLessThanHalf)
+                                    {
+                                        isReversed = true;
+                                        reversedResult = reversedResult ?? new List<string>(sentences.Length);
+                                    }
+
+                                    if(indexOfSentence == 0)
+                                    {
+                                        if (isLessThanHalf)
+                                        {
+                                            sb.Append(sentenceWitItem);
+                                            indexOfSentence++;
+                                        }
+                                        else
+                                        {
+                                            reversedResult.Add(sentenceWitItem);
+                                            indexOfSentence--;
+                                        }
+
+                                        continue;
+                                    }
+
+                                    if (indexOfSentence != 0 && isLessThanHalf)
+                                    {
+                                        sb.Append(sentences[indexOfSentence++]);
+                                    }
+
+                                    if (indexOfSentence != 0 && !isLessThanHalf)
+                                    {
+                                        reversedResult.Add(sentences[indexOfSentence--]);
+                                    }
+                                }
+
+                                if (!isReversed)
+                                {
+                                    result.Add(sb.ToString());
+                                }
+                                else
+                                {
+                                    reversedResult.Reverse();
+                                    var reversedSb = new StringBuilder();
+
+                                    foreach (var x in reversedResult)
+                                    {
+                                        reversedSb.Append(x);
+                                    }
+
+                                    result.Add(reversedSb.ToString());
+                                }
+                            }
+                            else
+                            {
+                                result.Add(sentenceWitItem);
+                            } */
+                            //result.Add(row.Substring(from, length));
                         }
                     }
                 }
