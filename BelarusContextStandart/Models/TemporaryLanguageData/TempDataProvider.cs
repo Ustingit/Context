@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using BelarusContextStandart.Models.LanguageModels;
 using BelarusContextStandart.Models.LanguageModels.Languages;
@@ -65,9 +66,9 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
 
 
 
-
+                            //Regex.Split(originalString, @"(?<=[.,;])")
                             var separators = new [] { '!', '.', '?' };
-                            var sentences = row.Split(separators);
+                            var sentences = Regex.Split(row, @"(?<=[.;?!])");
                             var sentencesAsList = sentences.ToList();
                             var sentenceWitItem = sentencesAsList.FirstOrDefault(x => x.Contains(data.Data));
                             var indexOfSentence = sentencesAsList.IndexOf(sentenceWitItem);
@@ -77,7 +78,7 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
                             {
                                 for (var i = indexOfSentence; i <= sentences.Length - 1; i++)
                                 {
-                                    if (!string.IsNullOrEmpty(sentences[i]) && sb4.Length <= RowLength)
+                                    if (sb4.Length <= RowLength && !string.IsNullOrEmpty(sentences[i]) && sentences[i].Length != 1)
                                     {
                                         sb4.Append(sentences[i]);
                                     }
@@ -93,7 +94,9 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
 
                                 for (var i = indexOfSentence; i >= 0; i--)
                                 {
-                                    if (reversedList.Sum(x => x.Length) <= RowLength)
+                                    var isWithoutText = !string.IsNullOrEmpty(sentences[i]) && sentences[i].Length != 1;
+
+                                    if (isWithoutText && reversedList.Sum(x => x.Length) <= RowLength)
                                     {
                                         reversedList.Add(sentences[i]);
                                     }
