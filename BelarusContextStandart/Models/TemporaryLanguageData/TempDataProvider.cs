@@ -57,17 +57,6 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
                     {
                         if (row.Contains(data.Data))
                         {
-                            var startIndex = row.IndexOf(data.Data, StringComparison.CurrentCultureIgnoreCase);
-
-                            var from = (startIndex - 25) < 0 ? 0 : startIndex - 25;
-                            var length = (from + RowLength) < (row.Length - 1) 
-                                ? RowLength 
-                                : row.Length - 1;
-
-
-
-                            //Regex.Split(originalString, @"(?<=[.,;])")
-                            var separators = new [] { '!', '.', '?' };
                             var sentences = Regex.Split(row, @"(?<=[.;?!])");
                             var sentencesAsList = sentences.ToList();
                             var sentenceWitItem = sentencesAsList.FirstOrDefault(x => x.Contains(data.Data));
@@ -113,72 +102,6 @@ namespace BelarusContextStandart.Models.TemporaryLanguageData
                                 }
                             }
                             result.Add(sb4.ToString());
-
-                            /* 
-                            if (sentenceWitItem?.Length < RowLength)
-                            {
-                                var sb = new StringBuilder();
-                                var isReversed = false;
-                                List<string> reversedResult = null;
-                                
-                                while (sb.Length < RowLength)
-                                {
-                                    var isLessThanHalf = indexOfSentence <= sentences.Length / 2;
-                                    if (!isLessThanHalf)
-                                    {
-                                        isReversed = true;
-                                        reversedResult = reversedResult ?? new List<string>(sentences.Length);
-                                    }
-
-                                    if(indexOfSentence == 0)
-                                    {
-                                        if (isLessThanHalf)
-                                        {
-                                            sb.Append(sentenceWitItem);
-                                            indexOfSentence++;
-                                        }
-                                        else
-                                        {
-                                            reversedResult.Add(sentenceWitItem);
-                                            indexOfSentence--;
-                                        }
-
-                                        continue;
-                                    }
-
-                                    if (indexOfSentence != 0 && isLessThanHalf)
-                                    {
-                                        sb.Append(sentences[indexOfSentence++]);
-                                    }
-
-                                    if (indexOfSentence != 0 && !isLessThanHalf)
-                                    {
-                                        reversedResult.Add(sentences[indexOfSentence--]);
-                                    }
-                                }
-
-                                if (!isReversed)
-                                {
-                                    result.Add(sb.ToString());
-                                }
-                                else
-                                {
-                                    reversedResult.Reverse();
-                                    var reversedSb = new StringBuilder();
-
-                                    foreach (var x in reversedResult)
-                                    {
-                                        reversedSb.Append(x);
-                                    }
-
-                                    result.Add(reversedSb.ToString());
-                                }
-                            }
-                            else
-                            {
-                                result.Add(sentenceWitItem);
-                            } */
-                            //result.Add(row.Substring(from, length));
                         }
                     }
                 }

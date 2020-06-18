@@ -13,13 +13,15 @@
             @using (Ajax.BeginForm("Translations", "Home", new AjaxOptions { UpdateTargetId = "results" }))
             {
                 <input class="text-box single-line" id="Data" name="data" type="text" value="">
-                @Html.EnumDescriptionDropDownListFor(model => model.FromLang)
+                <!-- Html.EnumDescriptionDropDownListFor(model => model.FromLang)-->
                 <span>
-                    <input class="check-box" data-val="true" data-val-required="Требуется поле Reverse." id="Reverse" name="reverse" type="checkbox" value="true">
+                    <!--<input class="check-box" data-val="true" data-val-required="Требуется поле Reverse." id="Reverse" name="reverse" type="checkbox" value="true">-->
                     <input name="reverse" type="hidden" value="false">
                 </span>
-                @Html.EnumDescriptionDropDownListFor(model => model.ToLang)
+                <!--Html.EnumDescriptionDropDownListFor(model => model.ToLang)-->
                 <span><input type="submit" value="Поиск"></span>
+                @Html.HiddenFor(x => x.FromLang)
+                @Html.HiddenFor(x => x.ToLang)
             }
         </div>
 
@@ -27,77 +29,24 @@
         <div class="wrapper wrapper--w1226">
             <div class="card card-5">
                 <div class="card-body">
-                    <form method="POST" action="#">
+                    @using (Ajax.BeginForm("Translations", "Home", new AjaxOptions { UpdateTargetId = "results" }))
+                    {
                         <div class="row row-space">
-                            <div class="col-6">
+                            <div class="col-8">
                                 <div class="input-group">
-                                    <input class="input--style-1" type="text" id="Data" name="data" placeholder="Введите текст для перевода" required="required" value="">
+                                    <input class="input--style-1" type="text" id="Data" name="data" placeholder="Введите текст для перевода" value="">
                                 </div>
+                            </div>
+                            
+                            @Html.HiddenFor(x => x.Reverse)
+                            @Html.HiddenFor(x => x.FromLang)
+                            @Html.HiddenFor(x => x.ToLang)
+
+                            <div class="col-2">
+                                <button class="btn btn-success" type="submit">Найти</button>
                             </div>
                         </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="row row-space">
-                                    <div class="col-2">
-                                        <div class="input-group m-b-0">
-                                            <label class="label">Passengers</label>
-                                            <div class="input-group-icon" id="js-select-special">
-                                                <input class="input--style-1 input--text-small" type="text" name="passengers" value="1 Adult, 0 Children, 1 Room" disabled="disabled" id="info">
-                                                <i class="zmdi zmdi-plus input-icon"></i>
-                                            </div>
-                                            <div class="dropdown-select">
-                                                <ul class="list-room">
-                                                    <li class="list-room__item">
-                                                        <span class="list-room__name">Room 1</span>
-                                                        <ul class="list-person">
-                                                            <li class="list-person__item">
-                                                                <span class="name">Adults</span>
-                                                                <div class="quantity quantity1">
-                                                                    <span class="minus">-</span>
-                                                                    <input class="inputQty" type="number" min="0" value="1">
-                                                                    <span class="plus">+</span>
-                                                                </div>
-                                                            </li>
-                                                            <li class="list-person__item">
-                                                                <span class="name">Children</span>
-                                                                <div class="quantity quantity2">
-                                                                    <span class="minus">-</span>
-                                                                    <input class="inputQty" type="number" min="0" value="0">
-                                                                    <span class="plus">+</span>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                                <div class="list-room__footer">
-                                                    <a href="#" id="btn-add-room">Add room</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group m-b-0">
-                                            <label class="label">Depart</label>
-                                            <input class="input--style-1" type="text" name="depart" placeholder="mm/dd/yyyy" id="input-start">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="row row-space">
-                                    <div class="col-2">
-                                        <div class="input-group m-b-0">
-                                            <label class="label">Return</label>
-                                            <input class="input--style-1" type="text" name="return" placeholder="mm/dd/yyyy" id="input-end">
-                                        </div>
-                                    </div>
-                                    <div class="col-2">
-                                        <button class="btn btn-outline-success" type="submit">Поиск</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    }
                 </div>
             </div>
         </div>
