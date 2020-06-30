@@ -89,43 +89,38 @@
     </nav>
     <!-- Responsive Navigation Bar -->
 
-    <div class="container" id="test_content">
+    <div class="container mt-60" id="test_content">
         <div class="container">
-            <div class="row search_wrapper">
-                <div class="col-sm">
-                    One of three columns
-                </div>
-                <div class="col-sm">
-                    One of three columns
-                </div>
-                <div class="col-sm">
-                    One of three columns
+            <div class="row">
+                <div class="wrapper wrapper--w1226">
+                    <div class="card card-5">
+                        <div class="card-body">
+                            @using (Ajax.BeginForm("Translations", "Home", new AjaxOptions { UpdateTargetId = "results" }))
+                            {
+                                <div class="row row-space">
+                                    <div class="col-8">
+                                        <div class="input-group">
+                                            <input class="input--style-1" type="text" id="Data" name="data" placeholder="Введите текст для перевода" value="">
+                                        </div>
+                                    </div>
+                            
+                                    @Html.HiddenFor(x => x.Reverse)
+                                    @Html.HiddenFor(x => x.FromLang)
+                                    @Html.HiddenFor(x => x.ToLang)
+
+                                    <div class="col-2">
+                                        <button class="btn btn-success" type="submit">Search</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div id="results"></div>
+            </div>
         </div>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
-        <p>FFsFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</p>
     </div>
 
     <div class="footer">
