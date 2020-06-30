@@ -88,40 +88,30 @@
         </div>
     </nav>
     <!-- Responsive Navigation Bar -->
-
+    
+    <!-- https://codepen.io/gungorbudak/pen/ooKNpz -->
     <div class="container mt-60" id="test_content">
-        <div class="container">
-            <div class="row">
-                <div class="wrapper wrapper--w1226">
-                    <div class="card card-5">
-                        <div class="card-body">
-                            @using (Ajax.BeginForm("Translations", "Home", new AjaxOptions { UpdateTargetId = "results" }))
-                            {
-                                <div class="row row-space">
-                                    <div class="col-8">
-                                        <div class="input-group">
-                                            <input class="input--style-1" type="text" id="Data" name="data" placeholder="Введите текст для перевода" value="">
-                                        </div>
-                                    </div>
-                            
-                                    @Html.HiddenFor(x => x.Reverse)
-                                    @Html.HiddenFor(x => x.FromLang)
-                                    @Html.HiddenFor(x => x.ToLang)
 
-                                    <div class="col-2">
-                                        <button class="btn btn-success" type="submit">Search</button>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    </div>
+        @using (Ajax.BeginForm("Translations", "Home", new AjaxOptions { UpdateTargetId = "results" }))
+        {
+            <div class="input-group">
+                @Html.HiddenFor(x => x.Reverse)
+                @Html.HiddenFor(x => x.FromLang)
+                @Html.HiddenFor(x => x.ToLang)
+                <input type="text" class="form-control" id="Data" name="data" placeholder="Type text to translate.." value="">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </div>
             </div>
+        }
+
             <div class="row">
                 <div id="results"></div>
             </div>
         </div>
-    </div>
+
 
     <div class="footer">
         <div class="footer_contents bg-dark">
