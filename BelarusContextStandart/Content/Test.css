@@ -28,7 +28,7 @@
     left: 0pt;
     width: 100%;
     text-align: center;
-    background-color: orange; /* TODO: chenge to white or common bck-color */
+    color: grey;
 }
 
 .footer_contents {
