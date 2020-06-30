@@ -2,12 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@ViewBag.Title - Belarussian language context</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
+
+
+
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -37,11 +41,10 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer class="footer">
-            <p>&copy; @DateTime.Now.Year - Беларуский контекст. По всем вопросам: <a href='mailto:ustinhtc@gmail.com?subject="mail from belarus context (footer) by Ustin"'>ustinhtc@gmail.com</a></p>
-        </footer>
     </div>
+    <footer class="footer">
+        <p>&copy; @DateTime.Now.Year - Беларуский контекст. По всем вопросам: <a href='mailto:ustinhtc@gmail.com?subject="mail from belarus context (footer) by Ustin"'>ustinhtc@gmail.com</a></p>
+    </footer>    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

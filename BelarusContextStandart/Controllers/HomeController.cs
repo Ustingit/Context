@@ -36,5 +36,11 @@ namespace BelarusContextStandart.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public async Task<ActionResult> Test()
+        {
+            return View("Test", TranslateModel.Default);
+        }
     }
 }

@@ -1,0 +1,38 @@
+﻿/* HEADER */
+
+/* upper header */
+
+.upper_header {
+    background-color: lightblue;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.header-logo {
+    max-width: 35px;
+    height: auto;
+}
+
+/* end upper header */
+/* END HEADER */
+/* footer - https://stackoverflow.com/a/6246629/6935910  */
+.footer {
+    height: 24px;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 0pt;
+    left: 0pt;
+    width: 100%;
+    text-align: center;
+    background-color: orange; /* TODO: chenge to white or common bck-color */
+}
+
+.footer_contents {
+    height: 24px;
+}
+
+/* footer end */
