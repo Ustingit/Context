@@ -1,0 +1,27 @@
+html {
+    font-size: 10;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: antiquewhite;
+}
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.search {
+    align-items: center;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
